@@ -1,4 +1,4 @@
-from app import db, marshmallow
+from api import db, marshmallow
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.dialects.postgresql import UUID
 
