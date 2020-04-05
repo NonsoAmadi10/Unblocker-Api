@@ -12,6 +12,11 @@ flask-marshmallow = "*"
 python-dotenv = "*"
 flask-migrate = "*"
 marshmallow-sqlalchemy = "*"
+pytest = "*"
+flask-testing = "*"
+pytest-cov = "*"
+pytest-xdist = "*"
+coveralls = "*"
 
 [requires]
 python_version = "3.6"
