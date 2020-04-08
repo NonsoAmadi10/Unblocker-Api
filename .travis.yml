@@ -3,13 +3,11 @@ python:
   - "3.6"
 
 before_install:
-  - sudo apt-get install build-essential curl file git
-  - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  - sudo apt-get -y install libxml2-dev
+  - pip install pipenv
+  - pipenv shell
  
   
 install:
-  - brew install pipenv
   - pipenv install
 
 services:
