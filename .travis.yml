@@ -4,7 +4,6 @@ python:
 
 before_install:
   - pip install pipenv
-  - pipenv shell
  
   
 install:
