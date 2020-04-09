@@ -17,6 +17,7 @@ flask-testing = "*"
 pytest-cov = "*"
 pytest-xdist = "*"
 coveralls = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"
