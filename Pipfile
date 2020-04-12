@@ -18,6 +18,11 @@ pytest-cov = "*"
 pytest-xdist = "*"
 coveralls = "*"
 gunicorn = "*"
+jwt = "*"
+pyjwt = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
+flask-jwt-extended = "*"
 
 [requires]
 python_version = "3.6"
