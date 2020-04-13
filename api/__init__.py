@@ -4,7 +4,8 @@ from flask_marshmallow import Marshmallow
 from .config import Config
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
-
+import psycopg2
+from flask_cors import CORS
 
 db = SQLAlchemy()
 marshmallow = Marshmallow()
@@ -23,6 +24,8 @@ def create_app(config_class=Config):
     
     from api.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/api/v1/auth')
+    
+    CORS(app)
     
     return app
 

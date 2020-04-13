@@ -1,24 +1,41 @@
-import os
-import json
 import pytest
-import unittest
+from tests.conftest import BaseTestCase
 
 
-
-class TestAuthorization(unittest.TestCase):
-    """ Test for the user authentication """
-
-    def test_user_signup(self):
-        """Test to see user signing up"""
-        res = self.test_client.post(
-            '/api/v1/register',
-            data=json.dumps({ "display_name": "Jerry", "email": "amadijerry@gmail.com","password": "adaka" }),
-            headers={"content-type": "application/json"}
-        )
-        return res
-
-    def test_user_registration(self):
-        """Test post success"""
-        response = self.test_user_signup()
-        result = json.loads(response.data.decode())
-        self.assertEqual(result["message"], "User testusr created login ")
+class AuthCase(BaseTestCase):
+    
+    def test_auth_user(self):
+        data = {
+            'display_name': 'amadi',
+            'email': 'amadigg@yahoo.com',
+            'password': 'amadijustuce3'
+        }
+        
+        response = self.client.post('/api/v1/auth/register', json=data)
+        message = response.get_json().get('message')
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(message, 'Account Creation Successful')
+        
+    def test_invalid_email(self):
+        data = {
+            'display_name': 'amadi',
+            'email': 'amadi@yahoocom',
+            'password': 'amadihgsg4546'
+        }
+        
+        response = self.client.post('/api/v1/auth/register', json=data)
+        message = response.get_json().get('error')
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(message, 'Provide a valid email address')
+        
+    def test_existing_user(self):
+        data = {
+            'display_name': 'amadi',
+            'email': 'cat@gmail.com',
+            'password': 'amadijustice345'
+        }
+        
+        response = self.client.post('/api/v1/auth/register', json=data)
+        message = response.get_json().get('error')
+        self.assertEqual(message, 'This is an existing User')
+    

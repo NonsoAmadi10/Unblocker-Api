@@ -47,7 +47,7 @@ def register():
         user = User.query.filter_by(email=email).first()
         present_display_name = User.query.filter_by(display_name=display_name).first()
         if user or present_display_name:
-            return jsonify({ "message": "This is an existing User"}), 400
+            return jsonify({ "error": "This is an existing User"}), 400
            # else go ahead and register the user
         new_user = User(display_name=display_name, email=email)
         new_user.set_password(password)
@@ -56,4 +56,4 @@ def register():
         payload = { "id": new_user.id, "email": new_user.email, display_name:new_user.display_name}
         token = create_access_token(identity=payload)
         response = {'success': True, 'message': 'Account Creation Successful', 'token': token}
-        return jsonify(response)
+        return jsonify(response), 201
