@@ -57,3 +57,31 @@ def register():
         token = create_access_token(identity=payload)
         response = {'success': True, 'message': 'Account Creation Successful', 'token': token}
         return jsonify(response), 201
+    
+    
+
+@bp.route('/login', methods=['POST'])
+def login():
+    data = request.get_json(force=True)
+    email = data['email']
+    password = data['password']
+
+
+    if not data:
+        return {"message": "Kindly input user info"}, 200
+
+    if not re.match(
+            r"(^[a-zA-z0-9_.]+@[a-zA-z0-9-]+\.[a-z]+$)", email):
+        return {'error': 'Provide a valid email address'}, 400
+
+
+    user = User.query.filter_by(email=email).first()
+    if not user :
+        return { 'error': 'User does not exist!'},400
+    elif not user.check_password(password):
+        return { 'error': 'Invalid Login Credentials!'},400
+    else :
+        payload = { "id": user.id, "email": user.email, display_name:user.display_name}
+        token = create_access_token(identity=payload)
+        response = {'success': True, 'message': 'Login Successful!', 'token': token}
+        return jsonify(response), 200
