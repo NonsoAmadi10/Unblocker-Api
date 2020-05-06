@@ -1,5 +1,5 @@
-# Unblocker-Api
-Unblocker is a Q&amp;A application that helps users get answers to questions they need answers to. Users can upvote and downvote an answer
+# Unblocker-CRUD
+Unblocker is a Q&amp;A application. This is a simple demonstration to show how code can be continously integrated and automatically deployed to heroku
 
 [![Build Status](https://travis-ci.org/NonsoAmadi10/Unblocker-Api.svg?branch=master)](https://travis-ci.org/NonsoAmadi10/Unblocker-Api)
 
@@ -13,3 +13,6 @@ Unblocker is a Q&amp;A application that helps users get answers to questions the
 - Sqlalchemy
 - Flask-Marshmallow
 - Flask-Migrate
+
+### Deployment
+- This app is deployed immediately the test on travis are passed. The configuration file for this can be found in the travis.yml
